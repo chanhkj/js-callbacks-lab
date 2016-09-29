@@ -14,14 +14,14 @@ var rs = document.querySelector('#reset');
 rs.addEventListener('click', resetButton);
 var ps = document.querySelector('#pause');
 ps.addEventListener('click', pauseButton);
+var header = document.querySelector('#timer');
 var seconds = 0;
 var timerID = 0;
 
 function updateTime() {
   // alert("test");
-  var header = document.querySelector('#timer');
-  header.textContent = "Time elapsed: " + seconds;
-  // body.appendChild(header);
+
+  header.textContent = "Time elapsed: " + seconds + "s";
   seconds++;
 
 
@@ -29,12 +29,18 @@ function updateTime() {
 
 // startButton();
 function startButton() {
-timerID = setInterval(updateTime, 1000);
+  timerID = setInterval(updateTime, 1000);
+  // console.log(timerID);
+
 }
 
 function resetButton() {
   // alert("reset");
-clearInterval(timerID)
+  // clearInterval(timerID)
+  pauseButton()
+  header.textContent = "Stop Watch";
+  timerID = 0;
+  seconds = 0;
 
 
 }
@@ -43,7 +49,9 @@ clearInterval(timerID)
 
 function pauseButton() {
   // alert("pause")
-clearInterval(timerID)
+  clearInterval(timerID)
+  timerID = 0;
+
 }
 // pauseButton();
 // }
